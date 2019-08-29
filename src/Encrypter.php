@@ -2,6 +2,7 @@
 
 namespace MCordingley\LaraLock;
 
+use Exception;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Encryption\EncryptException;
 use InvalidArgumentException;
@@ -26,6 +27,10 @@ final class Encrypter
         sodium_memzero($this->key);
     }
 
+    /**
+     * @return string
+     * @throws Exception
+     */
     public static function generateKey(): string
     {
         return random_bytes(SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_KEYBYTES);
@@ -53,7 +58,7 @@ final class Encrypter
     {
         try {
             $nonce = random_bytes(SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             throw new EncryptException('Unable to generate nonce, not enough entropy.', 0, $exception);
         }
 
