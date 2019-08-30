@@ -7,7 +7,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Encryption\EncryptException;
 use InvalidArgumentException;
 
-final class Encrypter
+final class AeadEncrypter
 {
     private $key;
 

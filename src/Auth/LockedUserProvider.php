@@ -6,14 +6,14 @@ use Illuminate\Auth\EloquentUserProvider;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Hashing\Hasher as HasherContract;
-use MCordingley\LaraLock\Encrypter;
+use MCordingley\LaraLock\AeadEncrypter;
 
 final class LockedUserProvider extends EloquentUserProvider
 {
     private $encrypter;
     private $fallthrough;
 
-    public function __construct(HasherContract $hasher, string $model, Encrypter $encrypter, bool $fallthrough)
+    public function __construct(HasherContract $hasher, string $model, AeadEncrypter $encrypter, bool $fallthrough)
     {
         parent::__construct($hasher, $model);
 

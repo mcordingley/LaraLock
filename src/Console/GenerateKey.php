@@ -17,7 +17,7 @@ final class GenerateKey extends Command
 
     public function handle()
     {
-        $key = 'base64:' . base64_encode(Encrypter::generateKey());
+        $key = 'base64:' . base64_encode(AeadEncrypter::generateKey());
 
         if ($this->option('show')) {
             $this->line('<comment>'.$key.'</comment>');
