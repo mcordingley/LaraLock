@@ -1,15 +1,12 @@
 <?php
 
-namespace MCordingley\Larabits\Encryption;
+namespace MCordingley\LaraLock;
 
 use Carbon\Laravel\ServiceProvider as BaseProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use MCordingley\LaraLock\Auth\LockedUserProvider;
-use MCordingley\LaraLock\AeadEncrypter;
-use MCordingley\LaraLock\Facade;
-use MCordingley\LaraLock\GenerateKey;
 
 final class ServiceProvider extends BaseProvider
 {
