@@ -31,6 +31,12 @@ final class AeadEncrypterTest extends TestCase
         $this->encrypter->decrypt($ciphertext, 'fail');
     }
 
+    public function testBadCiphertext()
+    {
+        static::expectException(DecryptException::class);
+        $this->encrypter->decrypt('fail', 'ad');
+    }
+
     public function testBadKey()
     {
         static::expectException(InvalidArgumentException::class);

@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Encryption\EncryptException;
 use InvalidArgumentException;
+use SodiumException;
 
 final class AeadEncrypter
 {
@@ -40,12 +41,16 @@ final class AeadEncrypter
     {
         $rawCipherText = base64_decode($value);
 
-        $plaintext = sodium_crypto_aead_chacha20poly1305_ietf_decrypt(
-            substr($rawCipherText, SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES),
-            $additionalData,
-            substr($rawCipherText, 0, SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES),
-            $this->key
-        );
+        try {
+            $plaintext = sodium_crypto_aead_chacha20poly1305_ietf_decrypt(
+                substr($rawCipherText, SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES),
+                $additionalData,
+                substr($rawCipherText, 0, SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES),
+                $this->key
+            );
+        } catch (SodiumException $exception) {
+            throw new DecryptException('Unable to decrypt password.');
+        }
 
         if ($plaintext === false) {
             throw new DecryptException('Unable to decrypt password.');
