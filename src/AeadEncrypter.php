@@ -38,7 +38,7 @@ final class AeadEncrypter
 
     public function decrypt(string $value, string $additionalData, bool $unserialize = true): string
     {
-        $rawCipherText = hex2bin($value);
+        $rawCipherText = base64_decode($value);
 
         $plaintext = sodium_crypto_aead_chacha20poly1305_ietf_decrypt(
             substr($rawCipherText, SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES),
@@ -62,7 +62,7 @@ final class AeadEncrypter
             throw new EncryptException('Unable to generate nonce, not enough entropy.', 0, $exception);
         }
 
-        return bin2hex(
+        return base64_encode(
             $nonce .
             sodium_crypto_aead_chacha20poly1305_ietf_encrypt(
                 $serialize ? serialize($value) : $value,
