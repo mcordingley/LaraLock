@@ -36,6 +36,10 @@ final class ServiceProvider extends BaseProvider
             $this->commands([
                 GenerateKey::class,
             ]);
+
+            $this->publishes([
+                __DIR__ . '/config/laralock.php' => config_path('laralock.php'),
+            ]);
         }
 
         Auth::provider('laralock', function (Application $app, array $config) {
