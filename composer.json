@@ -1,0 +1,39 @@
+{
+    "name": "mcordingley/laralock",
+    "description": "Laravel password locking to prevent injected passwords.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "MCordingley\\LaraLock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MCordingley\\LaraLockTests\\": "tests/"
+        }
+    },
+    "require": {
+        "illuminate/support": "^6.0",
+        "php": "^7.2.0"
+    },
+    "require-dev": {
+        "ext-xml": "*",
+        "phpunit/phpunit": "^8.1",
+        "mockery/mockery": "^1.2",
+        "orchestra/testbench": "^3.8"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Cordingley",
+            "email": "Michael.Cordingley@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MCordingley\\LaraLock\\ServiceProvider"
+            ]
+        }
+    }
+}
