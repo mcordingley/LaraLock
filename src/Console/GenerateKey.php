@@ -2,6 +2,7 @@
 
 namespace MCordingley\LaraLock;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 
@@ -17,7 +18,13 @@ final class GenerateKey extends Command
 
     public function handle()
     {
-        $key = 'base64:' . base64_encode(AeadEncrypter::generateKey());
+        try {
+            $key = 'base64:' . base64_encode(AeadEncrypter::generateKey());
+        } catch (Exception $e) {
+            $this->error($e->getMessage());
+
+            return;
+        }
 
         if ($this->option('show')) {
             $this->line('<comment>'.$key.'</comment>');
