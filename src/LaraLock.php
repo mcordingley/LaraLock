@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static bool check(string $value, Authenticatable $user, array $options = [])
  * @method static string make(string $value, Authenticatable $user, array $options = [])
  * @method static bool needsRehash(string $value, Authenticatable $user, array $options = [])
- * @method static string decrypt(string $value, string $additionalData, bool $unserialize = true)
+ * @method static decrypt(string $value, string $additionalData, bool $unserialize = true)
  * @method static string encrypt($value, string $additionalData, bool $serialize = true)
  *
  * @see \MCordingley\LaraLock\Facade

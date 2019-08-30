@@ -36,7 +36,7 @@ final class AeadEncrypter
         return random_bytes(SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_KEYBYTES);
     }
 
-    public function decrypt(string $value, string $additionalData, bool $unserialize = true): string
+    public function decrypt(string $value, string $additionalData, bool $unserialize = true)
     {
         $rawCipherText = base64_decode($value);
 

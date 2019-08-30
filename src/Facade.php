@@ -54,7 +54,7 @@ final class Facade
         }
     }
 
-    public function decrypt(string $value, string $additionalData, bool $unserialize = true): string
+    public function decrypt(string $value, string $additionalData, bool $unserialize = true)
     {
         return $this->encrypter->decrypt($value, $additionalData, $unserialize);
     }
