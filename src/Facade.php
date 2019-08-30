@@ -34,7 +34,7 @@ final class Facade
      * @return string
      * @throws Exception
      */
-    public function hash(string $value, Authenticatable $user, array $options = []): string
+    public function make(string $value, Authenticatable $user, array $options = []): string
     {
         $identifier = $user->getAuthIdentifier();
 
