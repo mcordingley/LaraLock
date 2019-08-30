@@ -15,7 +15,9 @@ final class ServiceProvider extends BaseProvider
 {
     public function register()
     {
-        $this->app->singleton('laralock', function (Application $app) {
+        $this->app->bind('laralock', Facade::class);
+
+        $this->app->singleton(Facade::class, function (Application $app) {
             return new Facade($app->make(AeadEncrypter::class), $app->make('hash'));
         });
 
