@@ -20,7 +20,7 @@
         "ext-xml": "*",
         "phpunit/phpunit": "^8.1",
         "mockery/mockery": "^1.2",
-        "orchestra/testbench": "^3.8"
+        "orchestra/testbench": "^4.0"
     },
     "license": "MIT",
     "authors": [
