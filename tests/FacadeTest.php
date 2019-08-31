@@ -3,7 +3,6 @@
 namespace MCordingley\LaraLockTests;
 
 use Exception;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Hashing\BcryptHasher;
 use MCordingley\LaraLock\AeadEncrypter;
@@ -17,7 +16,7 @@ final class FacadeTest extends TestCase
 
     public function setUp(): void
     {
-        $this->facade = new Facade(new AeadEncrypter(AeadEncrypter::generateKey()), new BcryptHasher(['rounds' => 4]));
+        $this->facade = new Facade(new AeadEncrypter(base64_decode('/dgzsXQlhjIRRMIu9mt/IU3N54a8njxKK1zvAUYzzbI=')), new BcryptHasher(['rounds' => 4]));
     }
 
     public function testHashing()
