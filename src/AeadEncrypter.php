@@ -64,7 +64,7 @@ final class AeadEncrypter
         try {
             $nonce = random_bytes(SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_IETF_NPUBBYTES);
         } catch (Exception $exception) {
-            throw new EncryptException('Unable to generate nonce, not enough entropy.', 0, $exception);
+            throw new EncryptException($exception->getMessage(), 0, $exception);
         }
 
         return base64_encode(
