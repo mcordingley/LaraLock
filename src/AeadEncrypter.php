@@ -49,7 +49,7 @@ final class AeadEncrypter
                 $this->key
             );
         } catch (SodiumException $exception) {
-            throw new DecryptException('Unable to decrypt password.');
+            $plaintext = false;
         }
 
         if ($plaintext === false) {
