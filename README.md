@@ -1,11 +1,17 @@
+# Important Note
+
+I am not yet convinced that what this library does is a meaningful improvement to security, as there are many other ways
+for an attacker with write access to a database to cause significant damage and to exfiltrate secrets. As it stands,
+this is mainly an attempt to get some thoughts "down on paper", as it were. If I'm convinced of its value in a production
+setting and can confidently vouch for its security benefits, then I'll finish the packaging process and tag a stable
+release.
+
 # LaraLock
 
 LaraLock is a utility for Laravel projects to protect against injected password credentials. If an attacker is somehow
 able to write values to your database, be it through SQL injection, having access to the database server, or some other
 avenue, simply hashing your passwords is no longer enough. While the hashed passwords are theoretically unable to be
 cracked, an attacker with write access to your database can simply hash a new password and write it into any user record.
-Such an attacker can then log in as the now-compromised user and see any secrets that user has access to, including
-values that are otherwise encrypted in the database.
 
 LaraLock protects your application passwords by building on top of password hashing with an Authenticated Encryption
 with Additional Data (AEAD) scheme. With this, you start with the security guarantees of using a proper password hash.
